@@ -1,0 +1,45 @@
+.flags-radio-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#radio-ireland {
+    position: relative;
+    left: 2%;
+}
+
+#radio-niger {
+    position: relative;
+    right: 9.5%;
+}
+
+#radio-india {
+    position: relative;
+    right: 25%;
+}
+
+.flags-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10%;
+    padding: 2% 7%;
+    margin: 0;
+    width: auto;
+}
+
+#ireland {
+    width: 30%;
+}
+
+#niger {
+    width: 25%;
+}
+
+#india {
+    width: 30%;
+}

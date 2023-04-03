@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="index.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Noto+Sans:wght@300&family=Raleway:wght@100&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Quiz</h1>
+    <form>
+        <div class="name-div">
+            <input id="first-name" class="name" type="text" placeholder="First Name" required>
+            <input id="last-name" class="name" type="text" placeholder="Last Name" required>
+        </div>
+        <input class="input" type="text" placeholder="ID" onkeypress="return isNumberKey(event)" required>
+        <input class="input" type="email" placeholder="Email" required>
+        <div class="select-div">
+            <select id="age" name="age" required></select>
+            <select name="gender" id="gender" required>
+                <option value="">Gender</option>
+                <option value="male">male</option>
+                <option value="female">female</option>
+                <option value="other">other</option>
+            </select>
+        </div>
+        <input id="password" class="input" type="password" placeholder="Quiz Password" required>
+        <button onclick="checkPassword()">Start Quiz</button>
+    </form>
+</body>
+</html>
