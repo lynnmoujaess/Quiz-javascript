@@ -21,6 +21,7 @@ function isNumberKey(evt) {
 function checkPassword() {
   let password = document.getElementById("password");
   if (password.value === "quizpassword") {
+      sessionStorage.setItem('username', document.getElementById('first-name').value);
       window.open("question.html");
   }
   else {
