@@ -21,7 +21,7 @@ function isNumberKey(evt) {
 function checkPassword() {
   let password = document.getElementById("password");
   if (password.value === "quizpassword") {
-      window.open("question1.html");
+      window.open("question.html");
   }
   else {
       alert("Incorrect password.");
