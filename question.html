@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 1</title>
+    <link rel="stylesheet" href="question.css">
+    <link rel="stylesheet" href="question1.css">
+    <link rel="stylesheet" href="question2.css">
+    <link rel="stylesheet" href="question3.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="question1-wrapper" class="question-wrapper">
+            <h2>Question 1</h2>
+            <div class="question">
+                <p id="question1"></p>
+                <form>
+                    <div class="flags-radio-wrapper">
+                        <input id="radio-ireland" type="radio" name="answer" value="ireland">
+                        <input id="radio-niger" type="radio" name="answer" value="niger">
+                        <input id="radio-india" type="radio" name="answer" value="india">
+                    </div>
+                    <div class="flags-wrapper">
+                        <img id="ireland" src="Photos/Ireland.png" alt="ireland-flag">
+                        <img id="niger" src="Photos/Niger.png" alt="niger-flag">
+                        <img id="india" src="Photos/India.png" alt="india-flag">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="question2-wrapper" class="question-wrapper">
+            <h2>Question 2</h2>
+            <div class="question">
+                <p id="question2"></p>
+                <img id="kazakhstan" src="Photos/Kazakhstan.png" alt="kazakhstan-flag">
+                <form>
+                    <input type="radio" name="answer" value="afghanistan">
+                    <label>Afghanistan</label>
+                    <br>
+                    <input type="radio" name="answer" value="pakistan">
+                    <label>Pakistan</label>
+                    <br>
+                    <input type="radio" name="answer" value="kazakhstan">
+                    <label>Kazakhstan</label>
+                </form>
+            </div>
+        </div>
+        <div id="question3-wrapper" class="question-wrapper">
+            <h2>Question 3</h2>
+            <div class="question">
+                <p id="question3"></p>
+                <form>
+                    <div class="maps-radio-wrapper">
+                        <input id="radio-denmark" type="radio" name="answer" value="denmark">
+                        <input id="radio-finland" type="radio" name="answer" value="finland">
+                        <input id="radio-australia" type="radio" name="answer" value="australia">
+                    </div>
+                    <div class="maps-wrapper">
+                        <img id="denmark" src="Photos/map-denmark.jpeg" alt="denmark-map">
+                        <img id="finland" src="Photos/map-finland.jpeg" alt="finland-map">
+                        <img id="australia" src="Photos/map-australia.jpeg" alt="australia-map">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <button id="prev-btn">Previous</button>
+        <button id="next-btn">Next</button>
+
+        <script>
+            const correctAnswers = [
+                {
+                    question: "Which is the flag of Ireland?",
+                    answer: "ireland"
+                },
+                {
+                    question: "What country does this flag correspond to?",
+                    answer: "kazakhstan"
+                },
+                {
+                    question: "Which map corresponds to Finland",
+                    answer: "finland"
+                }
+            ];
+
+            const questions = document.querySelectorAll(".question-wrapper");
+            let currentQuestion = 0;
+            let score = 0;
+
+            function showQuestion(index) {
+                questions[currentQuestion].style.visibility = "hidden";
+                questions[index].style.visibility = "visible";
+                currentQuestion = index;
+
+                const currentQuestionObj = correctAnswers[currentQuestion];
+                const currentQuestionText = currentQuestionObj.question;
+                const questionP = questions[index].querySelector("p");
+                questionP.textContent = currentQuestionText;
+            }
+
+
+            function showPreviousQuestion() {
+                if (currentQuestion === 0) {
+                    return;
+                }
+                showQuestion(currentQuestion - 1);
+            }
+
+            function showNextQuestion() {
+                if (currentQuestion === questions.length - 2) {
+                    nextBtn.textContent = "Submit";
+                }
+                if (currentQuestion === questions.length - 1) {
+                    calculateScore();
+                    return;
+                }
+                showQuestion(currentQuestion + 1);
+            }
+
+            function calculateScore() {
+                const userAnswers = document.querySelectorAll('input[type="radio"]:checked');
+                let score = 0;
+                let correctAnswersHTML = '';
+                let incorrectAnswersHTML = '';
+
+                for (let i = 0; i < userAnswers.length; i++) {
+                    if (userAnswers[i].value === correctAnswers[i].answer) {
+                        score++;
+                        correctAnswersHTML += `<li>Question ${i + 1}: ${correctAnswers[i].question} - Your answer: ${userAnswers[i].value} (Correct)</li>`;
+                    } else {
+                        incorrectAnswersHTML += `<li>Question ${i + 1}: ${correctAnswers[i].question} - Your answer: ${userAnswers[i].value} (Incorrect) - Correct answer: ${correctAnswers[i].answer}</li>`;
+                    }
+                }
+
+                // Create a div to display the score and answers
+                const scoreDiv = document.createElement('div');
+                scoreDiv.id = 'score-div';
+
+                // Display the score
+                scoreDiv.innerHTML = `<p id="score-p">Your score is ${score} out of ${correctAnswers.length}</p>`;
+
+                // Display the correct and incorrect answers
+                if (correctAnswersHTML) {
+                    const correctList = document.createElement('ul');
+                    correctList.innerHTML = `<p id="correct"><strong>Correct Answers:</strong> ${correctAnswersHTML}</p>`;
+                    scoreDiv.appendChild(correctList);
+                }
+
+                if (incorrectAnswersHTML) {
+                    const incorrectList = document.createElement('ul');
+                    incorrectList.innerHTML = `<p id="wrong"><strong>Incorrect Answers:</strong> ${incorrectAnswersHTML}</p>`;
+                    scoreDiv.appendChild(incorrectList);
+                }
+
+                // Append the score div to the body
+                document.body.appendChild(scoreDiv);
+
+                // Hide the current question and navigation buttons
+                questions[currentQuestion].style.display = "none";
+                prevBtn.style.display = "none";
+                nextBtn.style.display = "none";
+            }
+
+
+
+            const prevBtn = document.getElementById("prev-btn");
+            const nextBtn = document.getElementById("next-btn");
+
+            prevBtn.addEventListener("click", showPreviousQuestion);
+            nextBtn.addEventListener("click", showNextQuestion);
+
+            showQuestion(currentQuestion);
+        </script>
+    </div>
+</body>
+
+</html>

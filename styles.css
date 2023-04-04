@@ -104,6 +104,10 @@ body::after {
     border-left: 100px solid transparent;
 }
 
+button:hover {
+    background-color: rgb(74, 43, 174);
+}
+
 
   
   
