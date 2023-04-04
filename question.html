@@ -140,7 +140,7 @@
                 scoreDiv.id = 'score-div';
 
                 // Display the score
-                scoreDiv.innerHTML = `<p id="score-p">Your score is ${score} out of ${correctAnswers.length}</p>`;
+                scoreDiv.innerHTML = `<p id="score-p">Your score is ${score} out of ${correctAnswers.length}, ${sessionStorage.getItem('username')}</p>`;
 
                 // Display the correct and incorrect answers
                 if (correctAnswersHTML) {
